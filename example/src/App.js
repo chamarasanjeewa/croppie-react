@@ -1,13 +1,27 @@
 import React, { Component } from 'react'
 
-import ExampleComponent from 'croppie-react'
+import ReactCroppie from 'croppie-react'
 
 export default class App extends Component {
-  render () {
+  render() {
     return (
       <div>
-        <ExampleComponent text='Modern React component module' />
+        <ReactCroppie
+          url="testimage.jpeg"
+          orientation = {0}
+          Options={{
+            viewport: { width: 250, height: 250 },
+            boundary: { width: 300, height: 300 },
+            showZoomer: false,
+            enableResize: true,
+            enableOrientation: true,
+            mouseWheelZoom: 'ctrl'
+          }}
+          OnUpdate= {(evt)=>{
+            console.log(evt)
+          }}
+        />
       </div>
-    )
+    );
   }
 }

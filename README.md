@@ -1,30 +1,86 @@
 # croppie-react
 
-> react wrapper for croppie
+> A react wrapper around the popular cropping library https://foliotek.github.io/Croppie/ .
+This provides a react component wrapper around Croppie and exposes croppie API as props to the react-croppie component.
 
 [![NPM](https://img.shields.io/npm/v/croppie-react.svg)](https://www.npmjs.com/package/croppie-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Install
+## Getting Started
 
-```bash
-npm install --save croppie-react
+### Prerequisites
+
+1. [Nodejs](https://nodejs.org/en/) needs to be pre installed.Follow link and refer instructions on how to install [Nodejs](https://nodejs.org/en/).
+2. Should be a [React](https://reactjs.org/) based project.
+
+### Installing
+
+Just run
+
+```
+npm i react-croppie
+
 ```
 
-## Usage
+### How to use
 
-```tsx
-import * as React from 'react'
+you can use it by
 
-import MyComponent from 'croppie-react'
-
-class Example extends React.Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
-}
 ```
+import ReactCroppie from "croppiereactwrap";
+// and then use it on your react component 
+ <ReactCroppie
+          url="someimage.png"
+          orientation = {0}
+          Options={{
+            viewport: { width: 250, height: 250 },
+            boundary: { width: 300, height: 300 },
+            showZoomer: false,
+            enableResize: true,
+            enableOrientation: true,
+            mouseWheelZoom: 'ctrl'
+          }}
+          OnUpdate= {(evt)=>{
+            console.log(evt)
+          }}
+/>
+```
+### Documentation 
+
+ ##### Options
+ ------------
+ ```
+ {
+     boundry: { //Default will default to the size of the container
+         width: 300,
+         height: 300
+     },
+     customClassstring: 'yourCustomClass' // Default will be '',
+     enableExif: false, // Enable exif orientation reading.
+                              // Tells Croppie to read exif orientation from the image data and orient 
+                              // the image correctly before rendering to the page. Requires exif.js
+    enableOrientation: false // Enable or disable support for specifying a custom orientation when binding images
+    enableResize:
+ }
+ ```
+
+## Built With
+
+- [Croppie](https://foliotek.github.io/Croppie/)
+- [React](https://reactjs.org/)
+
+## Contributing
+
+## Versioning
+
+## Authors
+
+- **Dasith Kuruppu** - _Initial work_ -
+
+
+## Acknowledgments
+
+- Hat tip to anyone whose code was used
+- Inspiration
 
 ## License
 
