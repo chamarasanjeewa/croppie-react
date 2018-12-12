@@ -55,7 +55,7 @@ export default class CroppieWrapper extends React.Component<Props, State> {
   }
 
   croppieUpdated(event: Croppie.CropData) {
-    if (this.state.croppieInstance) {
+    if (this.state.croppieInstance && this.props.OnUpdate) {
       this.state.croppieInstance
         .result(this.state.result)
         .then((blob: Blob) => {
@@ -63,7 +63,7 @@ export default class CroppieWrapper extends React.Component<Props, State> {
           return this.props.OnUpdate(event);
         });
     } else {
-      return this.props.OnUpdate(event);
+      return this.props.OnUpdate ? this.props.OnUpdate(event) : null;
     }
   }
 
