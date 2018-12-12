@@ -1,9 +1,9 @@
+
+[![NPM](https://img.shields.io/npm/v/croppie-react.svg)](https://www.npmjs.com/package/croppie-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 # croppie-react
 
 > A react wrapper around the popular cropping library https://foliotek.github.io/Croppie/ .
 This provides a react component wrapper around Croppie and exposes croppie API as props to the react-croppie component.
-
-[![NPM](https://img.shields.io/npm/v/croppie-react.svg)](https://www.npmjs.com/package/croppie-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Getting Started
 
@@ -14,16 +14,29 @@ This provides a react component wrapper around Croppie and exposes croppie API a
 
 ### Installing
 
-Just run
+Just run all these if you want to actually test out the library if you just want to use it see below 
 
 ```
-npm i react-croppie
+npm install
+
+npm predeploy
+
+cd example
+
+npm start
+
+# if  you run into trouble installing make sure to delete package.lock on both root and example directory and follow the above steps again
 
 ```
 
 ### How to use
 
 you can use it by
+
+```
+npm i https://github.com/verico/croppie-react.git
+```
+and then ...
 
 ```
 import ReactCroppie from "croppiereactwrap";
@@ -46,20 +59,21 @@ import ReactCroppie from "croppiereactwrap";
 ```
 ### Documentation 
 
- ##### Options
+##### Options
  ------------
+Sample object ...
+
  ```
  {
-     boundry: { //Default will default to the size of the container
+    boundry: { //Defaults to size of container
          width: 300,
          height: 300
-     },
-     customClassstring: 'yourCustomClass' // Default will be '',
-     enableExif: false, // Enable exif orientation reading.
-                              // Tells Croppie to read exif orientation from the image data and orient 
-                              // the image correctly before rendering to the page. Requires exif.js
-    enableOrientation: false // Enable or disable support for specifying a custom orientation when binding images
-    enableResize:
+    },
+    customClassstring: 'any string',
+    enableExif: false, 
+    enableOrientation: false 
+    enableResize: false,
+    .... // more to be added
  }
  ```
 
@@ -74,13 +88,12 @@ import ReactCroppie from "croppiereactwrap";
 
 ## Authors
 
-- **Dasith Kuruppu** - _Initial work_ -
+- [Dasith](https://github.com/dasithkuruppu) - _Initial work_ -
 
 
 ## Acknowledgments
 
 - Hat tip to anyone whose code was used
-- Inspiration
 
 ## License
 
