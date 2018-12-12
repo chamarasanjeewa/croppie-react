@@ -5,13 +5,14 @@ import ReactCroppie from 'croppie-react'
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <div style={{width:500,height:500}}>
         <ReactCroppie
           url="testimage.jpeg"
-          orientation = {0}
+          orientation = {5}
+          rotation={90}
           Options={{
-            viewport: { width: 250, height: 250 },
-            boundary: { width: 300, height: 300 },
+            viewport: { width: 400, height: 400 },
+ 
             showZoomer: false,
             enableResize: true,
             enableOrientation: true,
