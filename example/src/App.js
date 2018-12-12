@@ -10,7 +10,7 @@ export default class App extends Component {
           url="testimage.jpeg"
           orientation = {5}
           rotation={90}
-          Options={{
+          options={{
             viewport: { width: 400, height: 400 },
  
             showZoomer: false,

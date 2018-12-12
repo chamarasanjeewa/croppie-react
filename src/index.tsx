@@ -6,7 +6,7 @@ export interface CroppieReactOpts extends CroppieOptions {
 }
 
 export interface Props {
-  Options: CroppieReactOpts;
+  options: CroppieReactOpts;
   className?: string;
   styles?: object;
   result?: ResultOptions;
@@ -30,7 +30,7 @@ export default class CroppieWrapper extends React.Component<Props, State> {
 
   componentDidMount() {
     const {
-      Options,
+      options,
       className,
       styles,
       result = { type: "blob" },
@@ -39,7 +39,7 @@ export default class CroppieWrapper extends React.Component<Props, State> {
     } = this.props;
     this.setState(
       {
-        croppieInstance: new Croppie(this.croppieElement.current as HTMLDivElement, Options),
+        croppieInstance: new Croppie(this.croppieElement.current as HTMLDivElement, options),
         className,
         styles,
         result
