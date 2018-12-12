@@ -21,9 +21,11 @@ export interface State {
 }
 
 export default class CroppieWrapper extends React.Component<Props, State> {
+  private croppieElement: React.RefObject<HTMLDivElement>;
   constructor(props: Props) {
     super(props);
     this.state = { croppieInstance: null };
+    this.croppieElement = React.createRef();
   }
 
   componentDidMount() {
@@ -37,19 +39,17 @@ export default class CroppieWrapper extends React.Component<Props, State> {
     } = this.props;
     this.setState(
       {
-        croppieInstance: new Croppie(
-          document.getElementById("croppie-wrapper-react") as HTMLElement,
-          Options
-        ),
+        croppieInstance: new Croppie(this.croppieElement.current as HTMLDivElement, Options),
         className,
         styles,
         result
       } as State,
       () => {
         this.state.croppieInstance.bind(other);
-        document
-          .getElementById("croppie-wrapper-react")
-          .addEventListener("update", this.croppieUpdated.bind(this));
+        this.croppieElement.current.addEventListener(
+          "update",
+          this.croppieUpdated.bind(this)
+        );
       }
     );
   }
@@ -77,6 +77,7 @@ export default class CroppieWrapper extends React.Component<Props, State> {
         className={this.state.className || ""}
         style={this.state.styles || null}
         id="croppie-wrapper-react"
+        ref={this.croppieElement}
       />
     );
   }
