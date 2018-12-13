@@ -39,7 +39,7 @@ npm i https://github.com/verico/croppie-react.git
 and then ...
 
 ```
-import ReactCroppie from "croppiereactwrap";
+import ReactCroppie from "croppie-react";
 // and then use it on your react component 
  <ReactCroppie
           url="someimage.png"
