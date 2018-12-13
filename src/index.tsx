@@ -11,21 +11,14 @@ export interface Props {
   styles?: object;
   result?: ResultOptions;
   OnUpdate?: (event: any) => void;
+  url: string;
 }
 
-export interface State {
-  croppieInstance: any;
-  className?: string;
-  styles?: object;
-  result?: ResultOptions;
-}
-
-export default class CroppieWrapper extends React.Component<Props, State> {
+export default class CroppieWrapper extends React.Component<Props> {
   private croppieElement: React.RefObject<HTMLDivElement>;
-  private croppieInstance: any = null;
+  private croppieInstance: Croppie = null;
   constructor(props: Props) {
     super(props);
-    this.state = { croppieInstance: null };
     this.croppieElement = React.createRef();
   }
 
@@ -51,10 +44,11 @@ export default class CroppieWrapper extends React.Component<Props, State> {
   }
 
   croppieUpdated(event: Croppie.CropData) {
-    const { result = { type: "blob" } } = this.props;
+    const defaultType: Croppie.Type = "canvas";
+    const { result = { type: defaultType } } = this.props;
     if (this.croppieInstance && this.props.OnUpdate) {
-      this.croppieInstance.result(result).then((blob: Blob) => {
-        event["result"] = blob;
+      this.croppieInstance.result(result).then((canvas: HTMLCanvasElement) => {
+        event["result"] = canvas;
         return this.props.OnUpdate(event);
       });
     } else {
