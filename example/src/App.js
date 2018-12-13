@@ -12,7 +12,7 @@ export default class App extends Component {
           rotation={90}
           options={{
             viewport: { width: 400, height: 400 },
- 
+            boundary: { width: 500, height: 500 },
             showZoomer: false,
             enableResize: true,
             enableOrientation: true,
