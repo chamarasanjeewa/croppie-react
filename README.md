@@ -14,7 +14,7 @@ This provides a react component wrapper around Croppie and exposes croppie API a
 
 ### Installing
 
-Just run all these if you want to actually test out the library if you just want to use it see below 
+Run all these if you actually want to test out the library, however if you just want to USE it on your project see below ... 'How to use'
 
 ```
 npm install
