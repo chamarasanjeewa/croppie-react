@@ -22,6 +22,7 @@ export interface State {
 
 export default class CroppieWrapper extends React.Component<Props, State> {
   private croppieElement: React.RefObject<HTMLDivElement>;
+  private croppieInstance: any = null;
   constructor(props: Props) {
     super(props);
     this.state = { croppieInstance: null };
@@ -29,53 +30,47 @@ export default class CroppieWrapper extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    const {
-      options,
-      className,
-      styles,
-      result = { type: "blob" },
-      children,
-      ...other
-    } = this.props;
-    this.setState(
-      {
-        croppieInstance: new Croppie(this.croppieElement.current as HTMLDivElement, options),
-        className,
-        styles,
-        result
-      } as State,
-      () => {
-        this.state.croppieInstance.bind(other);
-        this.croppieElement.current.addEventListener(
-          "update",
-          this.croppieUpdated.bind(this)
-        );
-      }
+    const { options, ...other } = this.props;
+    this.croppieInstance = new Croppie(
+      this.croppieElement.current as HTMLDivElement,
+      options
+    );
+
+    this.croppieInstance.bind(other);
+    this.croppieElement.current.addEventListener(
+      "update",
+      this.croppieUpdated.bind(this)
     );
   }
 
+  shouldComponentUpdate() {
+    if (this.croppieInstance) {
+      return false;
+    }
+    return true;
+  }
+
   croppieUpdated(event: Croppie.CropData) {
-    if (this.state.croppieInstance && this.props.OnUpdate) {
-      this.state.croppieInstance
-        .result(this.state.result)
-        .then((blob: Blob) => {
-          event["result"] = blob;
-          return this.props.OnUpdate(event);
-        });
+    const { result = { type: "blob" } } = this.props;
+    if (this.croppieInstance && this.props.OnUpdate) {
+      this.croppieInstance.result(result).then((blob: Blob) => {
+        event["result"] = blob;
+        return this.props.OnUpdate(event);
+      });
     } else {
       return this.props.OnUpdate ? this.props.OnUpdate(event) : null;
     }
   }
 
   componentWillUnmount() {
-    this.state.croppieInstance && this.state.croppieInstance.destroy();
+    this.croppieInstance && this.croppieInstance.destroy();
   }
 
   render() {
     return (
       <div
-        className={this.state.className || ""}
-        style={this.state.styles || null}
+        className={this.props.className || ""}
+        style={this.props.styles || null}
         id="croppie-wrapper-react"
         ref={this.croppieElement}
       />
