@@ -9,7 +9,6 @@ export default class App extends Component {
         <ReactCroppie
           url="testimage.jpeg"
           orientation = {5}
-          rotation={90}
           options={{
             viewport: { width: 400, height: 400 },
             boundary: { width: 500, height: 500 },
@@ -18,7 +17,7 @@ export default class App extends Component {
             enableOrientation: true,
             mouseWheelZoom: 'ctrl'
           }}
-          OnUpdate= {(evt)=>{
+          onUpdate= {(evt)=>{
             console.log(evt)
           }}
         />
